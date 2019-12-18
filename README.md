@@ -1,0 +1,2 @@
+# ausyjewelry
+ MySpringHibernateRestProject

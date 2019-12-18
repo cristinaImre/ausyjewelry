@@ -1,0 +1,154 @@
+package ro.ausy.jewelry.server.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+
+import ro.ausy.jewelry.commons.dto.UserDTO;
+import ro.ausy.jewelry.server.dao.UserDao;
+import ro.ausy.jewelry.server.entity.User;
+import ro.ausy.jewelry.server.utils.HibernateUtils;
+
+/**
+* This class implements the user methods that the client will be able to call
+* through <code>UserManager</code> object.
+* 
+* @author Cristina Imre
+*/
+@Repository
+public class UserDaoImpl implements UserDao {
+	/**
+	 * This is the Hibernate locale session that allows you to connect to
+	 * the database.
+	 */
+	private SessionFactory sessionFactory;
+
+	/**
+	 * The logging object.
+	 */
+	private static Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+
+	/**
+	 * This method verify if a <code>SessionFactory</code> object exists otherwise it is generated and returned.
+	 * @return a <code>SessionFactory</code> object
+	 */
+	public SessionFactory getSessionFactory() {
+
+		if (sessionFactory == null) {
+			sessionFactory = HibernateUtils.getSessionFactory();
+		}
+
+		return sessionFactory;
+	}
+	
+	/**
+	 * This method set a Hibernate session to a local session.
+	 * @param sessionFactory the Hibernate session
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public void insertUser(UserDTO userDTO) {
+		LOGGER.info("UserDaoImpl insertUser(UserDTO userDTO) has been called");
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			User user = new User();
+			user.setUserName(userDTO.getUserName());
+			user.setPassword(userDTO.getPassword());
+			session.saveOrUpdate(user);
+			tx.commit();
+
+		} catch (Exception e) {
+			LOGGER.error("Error: getting user by userName failed! ", e);
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+	}
+
+	@Override
+	public UserDTO getUserById(long userId) {
+		LOGGER.info("UserDaoImpl getUserById(Long id) has been called");
+
+		UserDTO userDTO = new UserDTO();
+		Session session = getSessionFactory().openSession();
+
+		try {
+			User user = (User) session.createCriteria(User.class).add(Restrictions.eq("id", userId)).uniqueResult();
+
+			if (user != null) {
+				return user.asDTO();
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error: getting user by id failed! ", e);
+		} finally {
+			session.close();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+
+		return userDTO;
+	}
+
+	@Override
+	public List<UserDTO> getAllUser() {
+		LOGGER.info("UserDaoImpl getAll() has been called");
+		Session session = getSessionFactory().openSession();
+		final List<UserDTO> userlist = new ArrayList<UserDTO>();
+		try {
+			List<User> users = session.createCriteria(User.class).list();
+
+			for (User userHere : users) {
+				userlist.add(userHere.asDTO());
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error: getting all users");
+		} finally {
+			session.close();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+		return userlist;	
+	}
+
+	@Override
+	public void deleteUser(UserDTO userDTO) {
+		LOGGER.info("UserDaoImpl deleteUser() has been called");
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			User user = new User();
+			user.setUserId(userDTO.getUserDTOId());
+			session.delete(user);
+			tx.commit();
+		} catch (Exception e) {
+			LOGGER.error("Error: deleting user failed", e);
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+	}
+}
