@@ -6,6 +6,6 @@
 <title>Home</title>
 </head>
 <body>
-<h2>Hello World!</h2>
+<h2>Hello, please sign in!</h2>
 </body>
 </html>

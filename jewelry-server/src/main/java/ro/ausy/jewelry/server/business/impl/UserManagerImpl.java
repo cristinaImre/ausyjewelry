@@ -3,6 +3,8 @@ package ro.ausy.jewelry.server.business.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import ro.ausy.jewelry.commons.dto.UserDTO;
@@ -15,9 +17,9 @@ import ro.ausy.jewelry.server.dao.UserDao;
  */
 @Repository
 public class UserManagerImpl implements UserManager {
-
-	@Autowired
-	UserDao userDao;
+	
+	final ApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+	private transient UserDao userDao = appContext.getBean(UserDao.class);
 	
 	@Override
 	public UserDTO getUserById(int userId) {
