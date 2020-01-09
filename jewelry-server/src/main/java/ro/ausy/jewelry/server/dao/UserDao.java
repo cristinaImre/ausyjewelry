@@ -10,21 +10,15 @@ import ro.ausy.jewelry.commons.dto.UserDTO;
 */
 public interface UserDao {
 	
-	/**
-	 * @param userId the user unique identifier
-	 * @return a <code>userDTO</code> object
-	 * This method will return an <code>UserDTO</code> object by ID.
-	 */
-	UserDTO getUserById(long userId);
+	UserDTO getUserById(int userId);
 	
-	/**
-	 * @return
-	 * This method will return all users.
-	 */
+	// MUST!!! getUserByName(String username);
+	
 	List<UserDTO> getAllUser();
 
 	void insertUser(UserDTO userDTO);
 	
 	void deleteUser(UserDTO userDTO);
 	
+	UserDTO login(String userName, String password);
 }

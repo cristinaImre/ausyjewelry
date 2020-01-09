@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,8 +12,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ro.ausy.jewelry.commons.dto.UserDTO;
+import ro.ausy.jewelry.commons.dto.UserRoleDTO;
 import ro.ausy.jewelry.server.dao.UserDao;
 import ro.ausy.jewelry.server.entity.User;
+import ro.ausy.jewelry.server.entity.UserRole;
 import ro.ausy.jewelry.server.utils.HibernateUtils;
 
 /**
@@ -67,6 +70,14 @@ public class UserDaoImpl implements UserDao {
 			User user = new User();
 			user.setUserName(userDTO.getUserName());
 			user.setPassword(userDTO.getPassword());
+			
+			List<UserRole> userRoleList = new ArrayList<UserRole>();
+			List<UserRoleDTO> userRoleDTOs = userDTO.getUserRoleDTOList();
+			for(UserRoleDTO userRoleDTO : userRoleDTOs) {
+			  userRoleList.add(new UserRole(userRoleDTO));
+			}
+			user.setUserRoleList(userRoleList);
+			 
 			session.saveOrUpdate(user);
 			tx.commit();
 
@@ -83,7 +94,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserDTO getUserById(long userId) {
+	public UserDTO getUserById(int userId) {
 		LOGGER.info("UserDaoImpl getUserById(Long id) has been called");
 
 		UserDTO userDTO = new UserDTO();
@@ -113,6 +124,7 @@ public class UserDaoImpl implements UserDao {
 		Session session = getSessionFactory().openSession();
 		final List<UserDTO> userlist = new ArrayList<UserDTO>();
 		try {
+			@SuppressWarnings("unchecked")
 			List<User> users = session.createCriteria(User.class).list();
 
 			for (User userHere : users) {
@@ -149,6 +161,32 @@ public class UserDaoImpl implements UserDao {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(HibernateUtils.SESSION_STOP);
 			}
+		}		
 		}
+	@Override
+	public UserDTO login(String userName, String password) {
+		LOGGER.info("UserDaoImpl login(String userName, String password) has been called");
+		UserDTO userDTO = new UserDTO();
+		Session session = getSessionFactory().openSession();
+		try {
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("userName", userName));
+			criteria.add(Restrictions.eq("password", password));
+			User user = (User) criteria.uniqueResult();
+			if(user != null){
+				userDTO = user.asDTO();
+			}
+		} catch(Exception e) {
+			LOGGER.error("Error: login failed", e);
+		} finally {
+			session.close();
+			if(LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+		return userDTO;
+		
+		
 	}
 }
+

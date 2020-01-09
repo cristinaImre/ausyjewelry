@@ -39,4 +39,9 @@ public class UserManagerImpl implements UserManager {
 		userDao.deleteUser(userDTO);
 	}
 
+	@Override
+	public UserDTO login(String userName, String password) {
+		return userDao.login(userName, password);
+	}
+		
 }

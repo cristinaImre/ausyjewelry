@@ -21,4 +21,6 @@ public interface UserManager {
 	void insertUser(UserDTO userDTO);
 	
 	void deleteUser(UserDTO userDTO);
+	
+	UserDTO login(String userName, String password);
 }

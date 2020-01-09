@@ -37,5 +37,9 @@ public class ProductManagerImpl implements ProductManager {
 		productDao.insertProduct(productDTO);
 	}
 	
+	@Override
+	public void deleteProduct(ProductDTO productDTO) {
+		productDao.deleteProduct(productDTO);
+	}
 
 }

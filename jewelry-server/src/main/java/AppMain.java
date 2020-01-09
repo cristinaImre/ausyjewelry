@@ -15,7 +15,7 @@ public class AppMain {
 		final ApplicationContext appContext = new ClassPathXmlApplicationContext("application-beans.xml");
 		
 		final UserManager userManager = appContext.getBean(UserManager.class);
-		//final ProductManager productManager = appContext.getBean(ProductManager.class);
+		final ProductManager productManager = appContext.getBean(ProductManager.class);
 		
 		//final UserDTO user = new UserDTO(5, "user", "password", null);		
 		//final ProductDTO product = new ProductDTO(6, "apa");
@@ -25,6 +25,10 @@ public class AppMain {
 		final UserDTO user = new UserDTO();
 		user.setUserDTOId(5);
 		userManager.deleteUser(user);
+		
+		final ProductDTO product = new ProductDTO();
+		product.setProductDTOId(22);
+		productManager.deleteProduct(product);
 
 	}
 

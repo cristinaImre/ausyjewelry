@@ -26,5 +26,7 @@ public interface ProductManager {
 	List<ProductDTO> getAllProduct();
 	
 	void insertProduct(ProductDTO productDTO);
+	
+	void deleteProduct(ProductDTO productDTO);
 
 }

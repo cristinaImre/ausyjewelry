@@ -122,6 +122,27 @@ public class ProductDaoImpl implements ProductDao {
 				}
 			}
 			return productlist;
+		}
+	
+	@Override
+	public void deleteProduct(ProductDTO productDTO) {
+		LOGGER.info("ProductDaoImpl deleteProduct() has been called");
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Product product = new Product();
+			product.setProductId(productDTO.getProductDTOId());
+			session.delete(product);
+			tx.commit();
+		} catch(Exception e) {
+			LOGGER.error("Error: deleting product failed", e);
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
+			if(LOGGER.isDebugEnabled());
+			   LOGGER.debug(HibernateUtils.SESSION_STOP);
+		}
 	}
-
 }

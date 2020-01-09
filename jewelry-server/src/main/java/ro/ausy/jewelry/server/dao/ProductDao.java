@@ -12,19 +12,11 @@ import ro.ausy.jewelry.commons.dto.ProductDTO;
  */
 public interface ProductDao {
 	
-	/**
-	 * @param productId
-	 * 				the product unique identifier
-	 * @return a <code>productDTO</code> object
-	 * This method will return an <code>ProductDTO</code> object by ID.
-	 */
 	ProductDTO getProductById(long productId);
 	
-	/**
-	 * @return
-	 * This method will return all products.
-	 */
 	List<ProductDTO> getAllProduct();
 	
 	void insertProduct(ProductDTO productDTO);
+	
+	void deleteProduct(ProductDTO productDTO);
 }

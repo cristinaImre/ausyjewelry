@@ -51,7 +51,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 	
 	@Override
-	public UserRoleDTO getUserRoleById(long userRoleId) {
+	public UserRoleDTO getUserRoleById(int userRoleId) {
 		LOGGER.info("UserRoleDaoImpl getUserRoleById has been called");
 		UserRoleDTO userRoleDTO = new UserRoleDTO();
 		Session session = getSessionFactory().openSession();
