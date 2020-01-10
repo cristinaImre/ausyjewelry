@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ro.ausy.jewelry.commons.dto.UserDTO;
 import ro.ausy.jewelry.commons.dto.UserRoleDTO;
@@ -25,6 +26,7 @@ import ro.ausy.jewelry.server.utils.HibernateUtils;
 * @author Cristina Imre
 */
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
 	/**
 	 * This is the Hibernate locale session that allows you to connect to

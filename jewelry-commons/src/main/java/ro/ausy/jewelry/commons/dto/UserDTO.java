@@ -3,10 +3,13 @@ package ro.ausy.jewelry.commons.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 /**
 * This is the Data Transfer Object for <code>User</code> object.
 * @author Cristina Imre
 */
+@Repository
 public class UserDTO implements Serializable {
 
 	/**

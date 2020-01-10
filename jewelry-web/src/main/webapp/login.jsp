@@ -2,14 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <title>Login</title>
 </head>
 <body>
-	<form method="post" action="login">
-		<input type="text" name="username" placeholder="unique"> 
-		<input type="password" name="password" placeholder="unique"> 
-		<input type="submit" name="submit" value="Log In">
+	<form action="login" method="POST">
+	
+		Please enter your username
+		<input type="text" name="username" placeholder="Username"/><br>
+		
+		Please enter your password
+		<input type="text" name="password" placeholder="Password"/> 
+		
+		<input type="submit" name="submit" value="submit">
 	</form>
 </body>
 </html>

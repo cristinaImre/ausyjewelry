@@ -10,27 +10,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ro.ausy.jewelry.commons.dto.UserDTO;
 import ro.ausy.jewelry.server.business.UserManager;
-import ro.ausy.jewelry.server.dao.UserDao;
 
 @Path("/user")
 public class UserService {
 
-	final ApplicationContext appContextDTO = new ClassPathXmlApplicationContext("applicationContextDto.xml");
-	ApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-	UserDao userDao = appContext.getBean(UserDao.class);
-
-	/**
-	 * this is an object of UserManager class.
-	 */
 	@Autowired
-	private transient UserManager userManager = appContextDTO.getBean(UserManager.class);
+	private transient UserManager userManager;
 
 	@GET
 	@Path("/id/{userId}")
@@ -41,7 +29,7 @@ public class UserService {
 	
 	@GET
 	@Path("/users")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON})
 	public List<UserDTO> getUsers() {
 		return userManager.getAllUser();
 	}
@@ -49,21 +37,8 @@ public class UserService {
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserDTO login(String user) {
-
-		JSONObject jsonObj;
-
-		try {
-			jsonObj = new JSONObject(user);
-			String username = jsonObj.getString("username");
-			String password = jsonObj.getString("password");
-
-			return userManager.login(username, password);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
+	public UserDTO login(@PathParam("userName") String userName, @PathParam("password") String password) {
+		return userManager.login(userName, password);
 	}
 
 	@POST

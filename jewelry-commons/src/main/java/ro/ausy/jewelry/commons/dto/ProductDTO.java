@@ -2,17 +2,20 @@ package ro.ausy.jewelry.commons.dto;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * This is the Data Transfer Object for <code>Product</code> object.
  * @author cimre
  *
  */
+@Repository
 public class ProductDTO implements Serializable {
 	
 	/**
-	 * PID
+	 * UID
 	 */
-	private static final long serialVersionPID = 21478745687L;
+	private static final long serialVersionUID = 21478745687L;
 	
 	/**
 	 * This is the Product's ID number which represents the primary key of this table.

@@ -13,15 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ro.ausy.jewelry.commons.dto.UserRoleDTO;
 import ro.ausy.jewelry.server.business.UserRoleManager;
 
-@Path("/user_role")
+@Path("/userRole")
 public class UserRoleService {
 	
-	/**
-	 * This is an object of UserRoleManager class.
-	 */
 	@Autowired
 	private transient UserRoleManager userRoleManager;
-	
+
 	/**
 	 * @param userRoleId userRoleId.
 	 * @return This method will return an UserRole by id.
@@ -42,8 +39,5 @@ public class UserRoleService {
 	public final List<UserRoleDTO> getAllUserRole() {
 		return userRoleManager.getAllUserRole();
 	}
-	
-	
-	
 
 }

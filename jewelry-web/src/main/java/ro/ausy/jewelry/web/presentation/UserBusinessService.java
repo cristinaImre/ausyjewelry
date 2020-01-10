@@ -20,6 +20,7 @@ import com.sun.jersey.api.client.WebResource;
  *
  */
 public class UserBusinessService {
+	
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {

@@ -9,11 +9,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ro.ausy.jewelry.commons.dto.ProductDTO;
 import ro.ausy.jewelry.server.dao.ProductDao;
 import ro.ausy.jewelry.server.entity.Product;
-import ro.ausy.jewelry.server.entity.User;
 import ro.ausy.jewelry.server.utils.HibernateUtils;
 
 /**
@@ -21,6 +21,7 @@ import ro.ausy.jewelry.server.utils.HibernateUtils;
  * @author cimre
  */
 @Repository
+@Transactional
 public class ProductDaoImpl implements ProductDao {
 	/**
 	 * This is the Hibernate locale session that allows you to connect 

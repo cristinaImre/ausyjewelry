@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ro.ausy.jewelry.commons.dto.UserRoleDTO;
 import ro.ausy.jewelry.server.dao.UserRoleDao;
@@ -21,6 +22,7 @@ import ro.ausy.jewelry.server.utils.HibernateUtils;
  *
  */
 @Repository
+@Transactional
 public class UserRoleDaoImpl implements UserRoleDao {
 	
 	/**

@@ -15,9 +15,7 @@ import ro.ausy.jewelry.server.business.ProductManager;
 @Component
 @Path("/product")
 public class ProductService {
-	/**
-	 * This is an object of ProductManager class.
-	 */
+	
 	@Autowired
 	private transient ProductManager productManager;
 	
