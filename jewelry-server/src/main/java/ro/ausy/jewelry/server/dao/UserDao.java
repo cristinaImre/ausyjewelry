@@ -12,7 +12,7 @@ public interface UserDao {
 	
 	UserDTO getUserById(int userId);
 	
-	// MUST!!! getUserByName(String username);
+	UserDTO getUserByName(String userName);
 	
 	List<UserDTO> getAllUser();
 

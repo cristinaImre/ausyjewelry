@@ -17,7 +17,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class LoginController extends HttpServlet {
 
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,25 +25,26 @@ private static final long serialVersionUID = 1L;
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
+		
+		JSONObject jsonUser = null;
+		try {
+			jsonUser = new JSONObject("{\"userName\":" + username + ",\"password\":" + password + "}");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		Client client = Client.create();
 		WebResource webResource = client.resource("http://localhost:8080/jewelry-server/rest/user/login");
-
-		String input = "{\"username\":" + username + ",\"password\":" + password + "}";
-
-			System.out.println(input);
 		
-		ClientResponse res = webResource.type("application/json").post(ClientResponse.class, input);
+		ClientResponse res = webResource.type("application/json").post(ClientResponse.class, jsonUser);
 		JSONObject output = res.getEntity(JSONObject.class);
 		
-		System.out.println(output);
-		
-		session.setAttribute("username", username);
-		
-		if(res.getStatus() == 200){
-			response.sendRedirect("nextPage.jsp");
-		} else {
+		if(output.isNull("userName")){
 			response.sendRedirect("invalidLogin.jsp");
+		} else {
+			response.sendRedirect("nextPage.jsp");
 		}
 	}
+
 }

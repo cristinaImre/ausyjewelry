@@ -16,6 +16,8 @@ public interface UserManager {
 	 */
 	UserDTO getUserById(int userId);
 	
+	UserDTO getUserByName(String userName);
+	
 	List<UserDTO> getAllUser();
 
 	void insertUser(UserDTO userDTO);

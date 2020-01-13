@@ -10,10 +10,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import ro.ausy.jewelry.commons.dto.UserDTO;
 import ro.ausy.jewelry.server.business.UserManager;
 
+@Component
 @Path("/user")
 public class UserService {
 
@@ -28,8 +34,15 @@ public class UserService {
 	}
 	
 	@GET
+	@Path("/name/{userName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public final UserDTO getUserByName(@PathParam("userName") final String userName) {
+		return userManager.getUserByName(userName);
+	}
+	
+	@GET
 	@Path("/users")
-	@Produces({ MediaType.APPLICATION_JSON})
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<UserDTO> getUsers() {
 		return userManager.getAllUser();
 	}
@@ -37,7 +50,12 @@ public class UserService {
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserDTO login(@PathParam("userName") String userName, @PathParam("password") String password) {
+	public UserDTO login(String user) throws JSONException {
+		JSONObject jsonObj;
+		jsonObj = new JSONObject(user);
+		String userName = jsonObj.getString("userName");
+		String password = jsonObj.getString("password");
+		
 		return userManager.login(userName, password);
 	}
 

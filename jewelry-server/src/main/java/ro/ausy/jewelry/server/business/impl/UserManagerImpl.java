@@ -23,6 +23,11 @@ public class UserManagerImpl implements UserManager {
 	public UserDTO getUserById(int userId) {
 		return userDao.getUserById(userId);
 	}
+	
+	@Override
+	public UserDTO getUserByName(String userName) {
+		return userDao.getUserByName(userName);
+	}
 
 	@Override
 	public List<UserDTO> getAllUser() {

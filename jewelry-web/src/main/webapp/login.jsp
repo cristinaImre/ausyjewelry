@@ -14,7 +14,7 @@
 		Please enter your password
 		<input type="text" name="password" placeholder="Password"/> 
 		
-		<input type="submit" name="submit" value="submit">
+		<input type="submit" name="submit" value="Login">
 	</form>
 </body>
 </html>

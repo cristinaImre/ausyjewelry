@@ -119,6 +119,32 @@ public class UserDaoImpl implements UserDao {
 
 		return userDTO;
 	}
+	
+	@Override
+	public UserDTO getUserByName(final String userName) {
+		LOGGER.info("UserDaoImpl getUserByName(String userName) has been called");
+
+		final UserDTO userDTO = new UserDTO();
+		Session session = getSessionFactory().openSession();
+
+		try {
+			User user = (User) session.createCriteria(User.class).add(Restrictions.eq("userName", userName))
+					.uniqueResult();
+
+			if (user != null) {
+				return user.asDTO();
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error: getting user by userName failed! ", e);
+		} finally {
+			session.close();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(HibernateUtils.SESSION_STOP);
+			}
+		}
+
+		return userDTO;
+	}
 
 	@Override
 	public List<UserDTO> getAllUser() {
@@ -187,8 +213,9 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 		return userDTO;
-		
-		
+	
 	}
+	
+
 }
 
