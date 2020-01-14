@@ -57,7 +57,6 @@ public class UserDTO implements Serializable {
 	}
 	
 	
-
 	public List<UserRoleDTO> getUserRoleDTOList() {
 		return userRoleDTOList;
 	}

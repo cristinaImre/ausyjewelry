@@ -62,10 +62,7 @@ public class UserService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/registration")
-	public final Response saveUser(@PathParam("userName") String userName, @PathParam("password") String password) {
-		UserDTO user = new UserDTO();
-		user.setUserName(userName);
-		user.setPassword(password);
+	public final Response saveUser(final UserDTO user) {
 		userManager.insertUser(user);
 		return Response.status(201).build();
 	}
