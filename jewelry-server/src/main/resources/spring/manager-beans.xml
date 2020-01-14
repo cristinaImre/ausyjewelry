@@ -12,6 +12,5 @@
 	<context:annotation-config />
 	<context:component-scan base-package="ro.ausy.jewelry.server.business" />
 
-	<import resource="spring/dao-beans.xml" />
-
+	
 </beans>

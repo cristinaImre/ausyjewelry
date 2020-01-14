@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -124,6 +125,20 @@ public class ProductDaoImpl implements ProductDao {
 			}
 			return productlist;
 		}
+	
+	@SuppressWarnings("unchecked")
+	public List<Product> displayProduct() {
+		Session session =getSessionFactory().openSession();
+		List<Product> result = new ArrayList<Product>();
+		try {
+			result = session.createQuery("FROM product").list();
+			return result;
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+		
+	}
 	
 	@Override
 	public void deleteProduct(ProductDTO productDTO) {

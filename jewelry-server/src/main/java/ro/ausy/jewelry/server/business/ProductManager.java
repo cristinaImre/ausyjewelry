@@ -19,6 +19,7 @@ public interface ProductManager {
 	 */
 	ProductDTO getProductById(int productId);
 	
+	
 	/**
 	 * @return
 	 * This method will return all products.
@@ -28,5 +29,7 @@ public interface ProductManager {
 	void insertProduct(ProductDTO productDTO);
 	
 	void deleteProduct(ProductDTO productDTO);
+	
+	public List<ProductDTO> listDTO();
 
 }
