@@ -52,4 +52,9 @@ public class ProductDTO implements Serializable {
 		this.productDTOId = productDTOId;
 		this.productName = productName;
 	}
+	
+	@Override
+	public String toString() {
+		return "ProductDTO [productId=" + productDTOId +", productName= " + productName + "]";
+	}
 }

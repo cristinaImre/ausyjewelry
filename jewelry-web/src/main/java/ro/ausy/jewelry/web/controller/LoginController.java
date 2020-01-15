@@ -1,6 +1,8 @@
 package ro.ausy.jewelry.web.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ import org.codehaus.jettison.json.JSONObject;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+
+import ro.ausy.jewelry.commons.dto.ProductDTO;
 
 public class LoginController extends HttpServlet {
 
@@ -50,7 +54,7 @@ public class LoginController extends HttpServlet {
 		String userRoleName = "";
 		try {
 			userRole = output.getJSONArray("userRoleDTOList");
-		    for(int i = 0 ; i < userRole.length() ; i++){
+		    for(int i = 0 ; i < userRole.length(); i++){
 		        JSONObject p = (JSONObject)userRole.get(i);
 		        userRoleName = p.getString("userRoleName");
 		    }
@@ -59,6 +63,26 @@ public class LoginController extends HttpServlet {
 			e1.printStackTrace();
 		}
 
+		Client client1 = Client.create();
+		WebResource webResource1 = client1.resource("http://localhost:8080/jewelry-server/rest/product");
+		ClientResponse res1 = webResource1.type("application/json").get(ClientResponse.class);
+		JSONArray result = res1.getEntity(JSONArray.class);
+		int p = 0;
+		JSONObject obj = new JSONObject();
+		List<ProductDTO> products = new ArrayList<ProductDTO>();
+		while (p < result.length()) {
+			try {
+				obj = result.getJSONObject(p);
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setProductDTOId(obj.getInt("productDTOId"));
+				productDTO.setProductName(obj.getString("productName"));
+				products.add(productDTO);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			p++;
+		}
+		session.setAttribute("products", products);
 		
 		session.setAttribute("userName", username);
 		
@@ -71,6 +95,7 @@ public class LoginController extends HttpServlet {
 				response.sendRedirect("products.jsp");
 			}
 		}
+		
 	}
 
 }

@@ -24,6 +24,7 @@ public class AppMain {
 		ProductDao productDao = appContext.getBean(ProductDao.class);
 		
 		List<Product> list = productDao.displayProduct();
+	//	List<ProductDTO> list = productDao.getAllProduct();
 		for (final Product product : list) {
 			System.out.println(product.toString());
 		}

@@ -13,32 +13,34 @@
 <body>
 
 	<%
-	
 		String username = (String) session.getAttribute("userName");
-		List<ProductDTO> products = (List<ProductDTO>) session.getAttribute("product");
+		List<ProductDTO> products = (List<ProductDTO>) session.getAttribute("products");
 	%>
 	<p>
 		Welcome
 		<%=username%></p>
-	<p>
-		Add product:</p>
 	
 	<br><br>
-	<form action="product" method="post">
-		Jewelry: <input type="text" name="new jewelry"><br>
-		Products: <select productName="productName">
-					<tr>
-    					<td><input type="ring" name="list" value="DiamondRing">DiamondRing <button>delete</button></td>
-					</tr>
-					<tr>
-    					<td><input type="ring" name="list" value="AmethistRing">AmethistRing <button>delete</button></td>
-					</tr>
-					<tr>
-    					<td><input type="ring" name="list" value="PearlRing">PearlRing <button>delete</button></td>
-					</tr>
-		</select>
-		<br><input type="submit" name="add" value="add">
-	</form>
+<!-- 	<form action="product" method="post"> -->
 	
+	<table>
+	<tr>
+		<th>Ausy Jewelry AJ</th>
+	</tr>
+	
+		<%
+		int var = 0;
+		for(ProductDTO productDTO : products) {
+		%>
+		<tr>
+			<td><%=++var %></td> 
+			<td><%=productDTO.getProductDTOId() %></td> 
+			<td><%=productDTO.getProductName() %></td>
+		</tr>
+		<%
+		}
+		%>
+	</table>
+
 </body>
 </html>

@@ -37,7 +37,6 @@ public class ProductService {
 //	}
 	
 	@GET
-	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductDTO> list() {
 		return productManager.listDTO();
