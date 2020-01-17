@@ -17,9 +17,8 @@ public interface ProductDao {
 	
 	List<ProductDTO> getAllProduct();
 	
-	void insertProduct(ProductDTO productDTO);
+	public void insertProduct(String productName);
 	
-	void deleteProduct(ProductDTO productDTO);
-	
-	public List<Product> displayProduct();
+	public void deleteProduct(int productId);
+
 }

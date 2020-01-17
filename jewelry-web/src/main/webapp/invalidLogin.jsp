@@ -13,3 +13,5 @@
 </body>
 
 </html>
+
+<jsp:include page="/WEB-INF/views/commons/footer.jsp" />

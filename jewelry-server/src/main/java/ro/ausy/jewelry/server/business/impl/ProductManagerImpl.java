@@ -35,26 +35,13 @@ public class ProductManagerImpl implements ProductManager {
 	}
 	
 	@Override
-	public void insertProduct(ProductDTO productDTO) {
-		productDao.insertProduct(productDTO);
+	public void insertProduct(String productName) {
+		productDao.insertProduct(productName);
 	}
 	
 	@Override
-	public void deleteProduct(ProductDTO productDTO) {
-		productDao.deleteProduct(productDTO);
-	}
-	
-
-	public List<ProductDTO> listDTO() {
-		List<Product> list = productDao.displayProduct();
-		List<ProductDTO> listDTO = new ArrayList<ProductDTO>();
-		for(Product product : list) {
-			ProductDTO productDTO = new ProductDTO();
-			productDTO.setProductDTOId(product.getProductId());
-			productDTO.setProductName(product.getProductName());
-			listDTO.add(productDTO);
-		}
-		return listDTO;
+	public void deleteProduct(int productId) {
+		productDao.deleteProduct(productId);
 	}
 
 }

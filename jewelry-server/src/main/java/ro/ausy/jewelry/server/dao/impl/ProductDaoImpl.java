@@ -3,6 +3,8 @@ package ro.ausy.jewelry.server.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -56,7 +58,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public void insertProduct(ProductDTO productDTO) {
+	public void insertProduct(String productName) {
 		LOGGER.info("ProductDaoImpl insertProduct(ProductDTO productDTO) has been called");
 		
 		Session session = getSessionFactory().openSession();
@@ -65,7 +67,7 @@ public class ProductDaoImpl implements ProductDao {
 		try { 
 			tx = session.beginTransaction();
 			Product product = new Product();
-			product.setProductName(productDTO.getProductName());
+			product.setProductName(productName);
 			session.saveOrUpdate(product);
 			tx.commit();
 		} catch (Exception e) {
@@ -78,6 +80,7 @@ public class ProductDaoImpl implements ProductDao {
 				LOGGER.debug(HibernateUtils.SESSION_STOP);
 			}
 		}
+	
 	}
 	
 	@Override
@@ -126,29 +129,29 @@ public class ProductDaoImpl implements ProductDao {
 			return productlist;
 		}
 	
-	@SuppressWarnings("unchecked")
-	public List<Product> displayProduct() {
-		Session session =getSessionFactory().openSession();
-		List<Product> result = new ArrayList<Product>();
-		try {
-			result = session.createQuery("FROM product").list();
-			return result;
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-			return null;
-		}
-		
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Product> displayProduct() {
+//		Session session =getSessionFactory().openSession();
+//		List<Product> result = new ArrayList<Product>();
+//		try {
+//			result = session.createQuery("FROM product").list();
+//			return result;
+//		} catch (Exception ex) {
+//			System.out.println(ex.getMessage());
+//			return null;
+//		}
+//		
+//	}
 	
 	@Override
-	public void deleteProduct(ProductDTO productDTO) {
+	public void deleteProduct(int productId) {
 		LOGGER.info("ProductDaoImpl deleteProduct() has been called");
 		Session session = getSessionFactory().openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
 			Product product = new Product();
-			product.setProductId(productDTO.getProductDTOId());
+			product.setProductId(productId);
 			session.delete(product);
 			tx.commit();
 		} catch(Exception e) {

@@ -23,11 +23,15 @@ public class AppMain {
 		
 		ProductDao productDao = appContext.getBean(ProductDao.class);
 		
-		List<Product> list = productDao.displayProduct();
-	//	List<ProductDTO> list = productDao.getAllProduct();
-		for (final Product product : list) {
-			System.out.println(product.toString());
-		}
+		//List<Product> list = productDao.displayProduct();
+//		List<ProductDTO> list = productDao.getAllProduct();
+//		for (final Product product : list) {
+//			System.out.println(product.toString());
+//		}
+		
+		final ApplicationContext appContextbusiness = new ClassPathXmlApplicationContext("application-beans.xml");
+		ProductManager pManag = appContextbusiness.getBean(ProductManager.class);
+//		ProductManager.deleteProduct("piggy bank in earthenware");
 		
 		//final UserDTO user = new UserDTO(5, "user", "password", null);		
 		//final ProductDTO product = new ProductDTO(6, "apa");

@@ -63,6 +63,9 @@ public class LoginController extends HttpServlet {
 			e1.printStackTrace();
 		}
 
+		/*
+		 * Display all products on productsAdmin page and products page.
+		 */
 		Client client1 = Client.create();
 		WebResource webResource1 = client1.resource("http://localhost:8080/jewelry-server/rest/product");
 		ClientResponse res1 = webResource1.type("application/json").get(ClientResponse.class);

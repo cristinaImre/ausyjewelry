@@ -1,0 +1,145 @@
+/* ============================================================================== */
+/* ================================= Header.jsp ================================= */
+/* ============================================================================== */
+.navbar-inverse {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.navbar-fixed-top {
+    top: 5px;
+    border-width: 0 0 1px;
+}
+
+.firstBar {
+    min-height: 90px !important;
+    top: 7px !important;
+    margin-left: 0px;
+    margin-bottom: 0px !important;
+    border-radius: 10px !important;
+    background: rgba(230, 230, 230, 0.9) !important;
+}
+
+.navbar-brand {
+    padding: 0px !important;
+    margin: 10px 0 0 10px;
+}
+
+.secondSectionHeader {
+    margin: 30px 0 0 170px;
+    float: left;
+    width: 50%;
+}
+
+.firstSectionHeader {
+    margin-left: 5%;
+}
+
+.navbar-form .form-control {
+    width: 175% !important;
+}
+
+.navbar-form {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.buttonSubmitFormHeader {
+    float: right;
+    margin-right: 150px;
+}
+
+.thirdSectionHeader {
+    float: right;
+    margin-right: 40px;
+}
+
+.thirdSectionHeaderOne {
+    margin-top: 5px;
+}
+
+.thirdSectionHeaderTwo {
+    margin-top: 10px;
+    width: 10%;
+}
+
+/* @media (min-width: 768px) */
+/* .navbar-nav>li>a { */
+/*      padding-top: 0px;  */
+/*      padding-bottom: 0px;  */
+.navbar-nav li a {
+    padding-top: 9px;
+    text-align: center;
+}
+
+.navbar-nav li {
+
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #0065b8;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #0065b8;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #0065b8;
+}
+
+.secondBar {
+    height: 30px !important;
+    top: 5px !important;
+    margin-left: 0px;
+    margin-bottom: 0px !important;
+    border-radius: 10px !important;
+    background: rgba(230, 230, 230, 0.9) !important;
+}
+
+.secondBarUl {
+    margin-left: 13%;
+}
+
+.secondBarUl ul li {
+    padding: 2px;
+}
+
+.navbarBottom {
+    width: 100%;
+    height: 30px !important;
+    bottom: 15px !important;
+    margin-left: 0px;
+    margin-bottom: 0px !important;
+    border-radius: 10px !important;
+    background: rgba(230, 230, 230, 0.9) !important;
+}
+
+.firstLi {
+    width: 100px;
+}
+
+.thirdLi {
+    width: 100px;
+}
+
+.sixthLi {
+    width: 144px;
+}
+.imgHeader {
+    width: 70px;
+    height: 70px;
+    display: block;
+    float: left;
+    clear: left;
+}
+
+/* ============================================================================== */
+/* ================================= Footer.jsp ================================= */
+/* ============================================================================== */
+footer p {
+    text-align: center;
+    color: black;
+}

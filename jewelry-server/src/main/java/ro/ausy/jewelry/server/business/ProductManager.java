@@ -26,10 +26,8 @@ public interface ProductManager {
 	 */
 	List<ProductDTO> getAllProduct();
 	
-	void insertProduct(ProductDTO productDTO);
+	public void insertProduct(String productName);
 	
-	void deleteProduct(ProductDTO productDTO);
-	
-	public List<ProductDTO> listDTO();
+	public void deleteProduct(int productId);
 
 }

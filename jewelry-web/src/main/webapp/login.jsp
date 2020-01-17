@@ -1,11 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Login</title>
-</head>
-<body>
+<!-- jsp:include page="/WEB-INF/views/commons/header.jsp" -->
+
+<div class="container main-container">
+<div>
 	<form action="login" method="POST">
 	
 		Please enter your username
@@ -16,5 +12,6 @@
 		
 		<input type="submit" name="submit" value="Login">
 	</form>
-</body>
-</html>
+</div>
+
+<jsp:include page="/WEB-INF/views/commons/footer.jsp" />

@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<jsp:include page="/WEB-INF/views/commons/header.jsp" />
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
-</head>
-<body>
-<h2>We are all stars and we deserve to twinkle</h2><br>
-<h3>...please sign in!</h3>
+<div class="container main-container">
+<div class="navbar secondBar ">
+	<h2>We are all stars and we deserve to twinkle</h2>
+	<br>
+	<h3>...please sign in!</h3>
+</div> 
+</div>
 
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/commons/footer.jsp" />

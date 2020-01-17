@@ -1,6 +1,8 @@
+<jsp:include page="/WEB-INF/views/commons/header.jsp" />
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    	<%@ page import="org.codehaus.jettison.json.JSONArray" %> 
+<%@ page import="org.codehaus.jettison.json.JSONArray" %> 
 <%@ page import="org.codehaus.jettison.json.JSONObject" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ro.ausy.jewelry.commons.dto.ProductDTO" %>
@@ -24,9 +26,9 @@
 <!-- 	<form action="product" method="post"> -->
 	
 	<table>
-	<tr>
-		<th>Ausy Jewelry AJ</th>
-	</tr>
+	
+		<h1>Ausy Jewelry AJ</h1>
+
 	
 		<%
 		int var = 0;
@@ -34,13 +36,22 @@
 		%>
 		<tr>
 			<td><%=++var %></td> 
-			<td><%=productDTO.getProductDTOId() %></td> 
+<%-- 			<td><%=productDTO.getProductDTOId() %></td>  --%>
 			<td><%=productDTO.getProductName() %></td>
 		</tr>
 		<%
 		}
 		%>
 	</table>
-
+	
+	<p>Add to shopping bag</p>
+	<form action="select" method="post">
+		<tr>
+    		<td><input type="text" name="product"><button value="select">add</button></td> 
+		</tr><br> 
+	</form>
+	
 </body>
 </html>
+
+<jsp:include page="/WEB-INF/views/commons/footer.jsp" />
