@@ -1,57 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/commons/header.jsp" />
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="org.codehaus.jettison.json.JSONArray" %> 
-<%@ page import="org.codehaus.jettison.json.JSONObject" %>
-<%@ page import="java.util.List" %>
-<%@ page import="ro.ausy.jewelry.commons.dto.ProductDTO" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-	<%
-		String username = (String) session.getAttribute("userName");
-		List<ProductDTO> products = (List<ProductDTO>) session.getAttribute("products");
-	%>
-	<p>
-		Welcome
-		<%=username%></p>
-	
-	<br><br>
-<!-- 	<form action="product" method="post"> -->
-	
-	<table>
-	
-		<h1>Ausy Jewelry AJ</h1>
-
-	
-		<%
-		int var = 0;
-		for(ProductDTO productDTO : products) {
-		%>
-		<tr>
-			<td><%=++var %></td> 
-<%-- 			<td><%=productDTO.getProductDTOId() %></td>  --%>
-			<td><%=productDTO.getProductName() %></td>
-		</tr>
-		<%
-		}
-		%>
-	</table>
-	
-	<p>Add to shopping bag</p>
-	<form action="select" method="post">
-		<tr>
-    		<td><input type="text" name="product"><button value="select">add</button></td> 
-		</tr><br> 
-	</form>
-	
-</body>
-</html>
+<div class="container main-container">
+	<h3>Welcome, ${userName}</h3>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-striped">
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Buy</th>
+				</tr>
+				<c:forEach items="${products}" var="product">
+					<tr>
+						<td>${product.productDTOId}</td>
+						<td>${product.productName}</td>
+						<td><a href="${pageContext.request.contextPath }/cart?&action=buy&productId=${product.productDTOId}">Buy</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+</div>
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp" />

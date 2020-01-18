@@ -53,6 +53,4 @@ public class UserRoleDTO implements Serializable {
 		this.userRoleName = userRoleName;
 	}
 		
-	
-
 }

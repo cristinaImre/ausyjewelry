@@ -13,7 +13,7 @@ import ro.ausy.jewelry.server.entity.Product;
  */
 public interface ProductDao {
 	
-	ProductDTO getProductById(long productId);
+	ProductDTO getProductById(int productId);
 	
 	List<ProductDTO> getAllProduct();
 	

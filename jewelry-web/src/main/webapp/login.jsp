@@ -1,6 +1,4 @@
 <!-- jsp:include page="/WEB-INF/views/commons/header.jsp" -->
-
-<div class="container main-container">
 <div>
 	<form action="login" method="POST">
 	
@@ -8,9 +6,9 @@
 		<input type="text" name="username" placeholder="Username"/><br>
 		
 		Please enter your password
-		<input type="text" name="password" placeholder="Password"/> 
+		<input type="password" name="password" placeholder="Password"/> 
 		
-		<input type="submit" name="submit" value="Login">
+		<button type="submit" class="btn btn-primary" value="Login">Login</button>
 	</form>
 </div>
 

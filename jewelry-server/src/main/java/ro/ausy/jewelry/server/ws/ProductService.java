@@ -34,12 +34,15 @@ public class ProductService {
 	 * @return
 	 * product by ID.
 	 */
-//	@GET
-//	@Path("/id/{productId}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public final ProductDTO getProductById(@PathParam("productId")final int productId) {
-//		return productManager.getProductById(productId);
-//	}
+	@POST
+	@Path("/id")
+	@Produces(MediaType.APPLICATION_JSON)
+	public final ProductDTO getProductById(String product) throws JSONException {
+		JSONObject jsonObj;
+		jsonObj = new JSONObject(product);
+		int productId = jsonObj.getInt("productId");
+		return productManager.getProductById(productId);
+	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

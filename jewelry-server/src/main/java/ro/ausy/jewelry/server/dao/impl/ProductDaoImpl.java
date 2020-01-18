@@ -84,7 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public ProductDTO getProductById(long productId) {
+	public ProductDTO getProductById(int productId) {
 		LOGGER.info("ProductDaoImpl getProductById(Long id) has been called");
 		
 		ProductDTO productDTO = new ProductDTO();
