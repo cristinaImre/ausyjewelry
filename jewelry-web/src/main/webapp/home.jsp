@@ -7,7 +7,7 @@
 			</div>
 			<div class="col-md-4" id="login"><%@ include file="login.jsp"%></div>
 		</div>
-<br>
+		<br>
 		<div class="row">
 		 <%@ include file="homeSlider.jsp"%>
 		</div>

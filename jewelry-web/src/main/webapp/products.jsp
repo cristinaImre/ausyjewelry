@@ -22,6 +22,9 @@
 				</c:forEach>
 			</table>
 		</div>
+		<div class="col-md-6" id="imgProducts">
+			<img src="${pageContext.request.contextPath}/resources/img/audrey.png" style="width: 100%"> 
+		</div>
 	</div>
 </div>
 

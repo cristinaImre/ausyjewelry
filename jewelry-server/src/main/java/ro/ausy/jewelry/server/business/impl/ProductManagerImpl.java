@@ -1,6 +1,5 @@
 package ro.ausy.jewelry.server.business.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import ro.ausy.jewelry.commons.dto.ProductDTO;
 import ro.ausy.jewelry.server.business.ProductManager;
 import ro.ausy.jewelry.server.dao.ProductDao;
-import ro.ausy.jewelry.server.entity.Product;
 
 /**
  * This class represents a manager that implements the methods from

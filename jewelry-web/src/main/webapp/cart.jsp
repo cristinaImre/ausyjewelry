@@ -10,7 +10,6 @@
 		<div class="col-md-4">
 			<table class="table table-striped">
 				<tr>
-					<th>Option</th>
 					<th>Id</th>
 					<th>Name</th>
 					<th>Quantity</th>
@@ -18,7 +17,6 @@
 				</tr>
 				<c:forEach items="${cart}" var="product">
 					<tr>
-						<td></td>
 						<td>${product.productDTOId }</td>
 						<td>${product.productName }</td>
 						<td>1</td>
@@ -27,6 +25,9 @@
 			</table>
 			<br> <a href="${pageContext.request.contextPath }/products.jsp">Continue
 				Shopping</a>
+			<form action="logout" method="post">
+				<button type="submit" class="btn btn-primary" value="logout">Logout</button>
+			</form>	
 		</div>
 </div>
 </div>

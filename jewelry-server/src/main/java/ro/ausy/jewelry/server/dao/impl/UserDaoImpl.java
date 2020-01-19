@@ -20,17 +20,17 @@ import ro.ausy.jewelry.server.entity.UserRole;
 import ro.ausy.jewelry.server.utils.HibernateUtils;
 
 /**
-* This class implements the user methods that the client will be able to call
-* through <code>UserManager</code> object.
-* 
-* @author Cristina Imre
-*/
+ * This class implements the user methods that the client will be able to call
+ * through <code>UserManager</code> object.
+ * 
+ * @author Cristina Imre
+ */
 @Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
 	/**
-	 * This is the Hibernate locale session that allows you to connect to
-	 * the database.
+	 * This is the Hibernate locale session that allows you to connect to the
+	 * database.
 	 */
 	private SessionFactory sessionFactory;
 
@@ -40,7 +40,9 @@ public class UserDaoImpl implements UserDao {
 	private static Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
 	/**
-	 * This method verify if a <code>SessionFactory</code> object exists otherwise it is generated and returned.
+	 * This method verify if a <code>SessionFactory</code> object exists
+	 * otherwise it is generated and returned.
+	 * 
 	 * @return a <code>SessionFactory</code> object
 	 */
 	public SessionFactory getSessionFactory() {
@@ -51,10 +53,12 @@ public class UserDaoImpl implements UserDao {
 
 		return sessionFactory;
 	}
-	
+
 	/**
 	 * This method set a Hibernate session to a local session.
-	 * @param sessionFactory the Hibernate session
+	 * 
+	 * @param sessionFactory
+	 *            the Hibernate session
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -72,14 +76,14 @@ public class UserDaoImpl implements UserDao {
 			User user = new User();
 			user.setUserName(userDTO.getUserName());
 			user.setPassword(userDTO.getPassword());
-			
+
 			List<UserRole> userRoleList = new ArrayList<UserRole>();
 			List<UserRoleDTO> userRoleDTOs = userDTO.getUserRoleDTOList();
-			for(UserRoleDTO userRoleDTO : userRoleDTOs) {
-			  userRoleList.add(new UserRole(userRoleDTO));
+			for (UserRoleDTO userRoleDTO : userRoleDTOs) {
+				userRoleList.add(new UserRole(userRoleDTO));
 			}
 			user.setUserRoleList(userRoleList);
-			 
+
 			session.saveOrUpdate(user);
 			tx.commit();
 
@@ -119,7 +123,7 @@ public class UserDaoImpl implements UserDao {
 
 		return userDTO;
 	}
-	
+
 	@Override
 	public UserDTO getUserByName(final String userName) {
 		LOGGER.info("UserDaoImpl getUserByName(String userName) has been called");
@@ -166,7 +170,7 @@ public class UserDaoImpl implements UserDao {
 				LOGGER.debug(HibernateUtils.SESSION_STOP);
 			}
 		}
-		return userlist;	
+		return userlist;
 	}
 
 	@Override
@@ -189,8 +193,9 @@ public class UserDaoImpl implements UserDao {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(HibernateUtils.SESSION_STOP);
 			}
-		}		
 		}
+	}
+
 	@Override
 	public UserDTO login(String userName, String password) {
 		LOGGER.info("UserDaoImpl login(String userName, String password) has been called");
@@ -201,21 +206,19 @@ public class UserDaoImpl implements UserDao {
 			criteria.add(Restrictions.eq("userName", userName));
 			criteria.add(Restrictions.eq("password", password));
 			User user = (User) criteria.uniqueResult();
-			if(user != null){
+			if (user != null) {
 				userDTO = user.asDTO();
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			LOGGER.error("Error: login failed", e);
 		} finally {
 			session.close();
-			if(LOGGER.isDebugEnabled()) {
+			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(HibernateUtils.SESSION_STOP);
 			}
 		}
 		return userDTO;
-	
+
 	}
-	
 
 }
-

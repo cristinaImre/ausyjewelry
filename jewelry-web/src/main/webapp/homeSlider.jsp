@@ -5,7 +5,6 @@
 				<img class="mySlides" src="${pageContext.request.contextPath}/resources/img/slider2.jpg" style="width: 100%"> 
 				<img class="mySlides" src="${pageContext.request.contextPath}/resources/img/slider3.jpg" style="width: 100%">
 				<img class="mySlides" src="${pageContext.request.contextPath}/resources/img/slider4.jpg" style="width: 100%">
-				<img class="mySlides" src="${pageContext.request.contextPath}/resources/img/slider5.jpg" style="width: 100%">
 			</div>
 
 			<script>

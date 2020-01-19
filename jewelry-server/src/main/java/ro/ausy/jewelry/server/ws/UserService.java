@@ -58,15 +58,15 @@ public class UserService {
 		
 		return userManager.login(userName, password);
 	}
-
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/registration")
-	public final Response saveUser(final UserDTO user) {
-		userManager.insertUser(user);
-		return Response.status(201).build();
-	}
-	
-	
+//
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Path("/registration")
+//	public final Response saveUser(final UserDTO user) {
+//		userManager.insertUser(user);
+//		return Response.status(201).build();
+//	}
+//	
+//	
 
 }

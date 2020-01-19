@@ -42,6 +42,12 @@ body {
     clear: left;
 }
 
+#imgProducts {
+	width: 370px;
+    display: block;
+    margin-left: 75px
+}
+
 .firstSectionHeader {
     margin-left: 5%;
 }

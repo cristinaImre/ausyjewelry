@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -81,7 +80,7 @@ public class CartController extends HttpServlet {
 			}
 		} else {
 			List<ProductDTO> cart = (List<ProductDTO>) session.getAttribute("cart");
-			int index = isExisting(request.getParameter("id"), cart);
+			int index = isExisting(request.getParameter("productId"), cart);
 			if (index == -1) {
 				try {
 					ProductDTO productDTO = new ProductDTO();

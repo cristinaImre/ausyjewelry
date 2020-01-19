@@ -1,7 +1,6 @@
 package ro.ausy.jewelry.web.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +30,6 @@ public class ProductController extends HttpServlet {
 		Client client = Client.create();
 		if (productName != null) {
 			WebResource webResource = client.resource("http://localhost:8080/jewelry-server/rest/product/insert");
-			//String product = "{\"productName\":" + productName + "}";
 			JSONObject jsonProductName = null;
 			try {
 				jsonProductName = new JSONObject("{\"productName\":" + productName + "}");
